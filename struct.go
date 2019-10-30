@@ -49,7 +49,7 @@ type Merchant struct {
 type Order struct {
 	ID            int64        `json:"id,omitempty" validate:"omitempty,numeric,max=9999999999,min=1"`
 	Title         string       `json:"title,omitempty" validate:"required,max=255,min=3"`
-	CustomerID    string       `json:"customerId,omitempty" validate:"required,mdn"`
+	CustomerID    string       `json:"customerId,omitempty" validate:"required,max=15,min=10"`
 	CustomerEmail string       `json:"customerEmail,omitempty" validate:"email"`
 	InvoiceNo     string       `json:"invoiceNo,omitempty" validate:"omitempty,max=30,min=3"`
 	TotalPrice    *Amount      `json:"totalPrice,omitempty"`
@@ -63,6 +63,7 @@ type Partner struct {
 	Code         string `json:"code,omitempty" validate:"required,max=50,min=3"`
 	IssuerCode   string `json:"issuerCode,omitempty" validate:"required,max=50,min=3"`
 	Hotline      string `json:"hotline,omitempty" validate:"omitempty,max=50,min=3"`
+	InvoiceTmpl  int    `json:"-"`
 	Url          string `json:"-"`
 	PublicKey    string `json:"-"`
 	AsyncPayment int    `json:"-"`
@@ -76,7 +77,7 @@ type Account struct {
 }
 
 type Payment struct {
-	ID           int64     `json:"-"`
+	ID           int64     `json:"paymentId,omitempty"`
 	Method       string    `json:"method,omitempty" validate:"required,max=50,min=3"`
 	Reference    string    `json:"reference,omitempty" validate:"required,max=50,min=3"`
 	SequenceID   int64     `json:"sequenceId,omitempty" validate:"omitempty,numeric,max=9999999999,min=1"`
@@ -95,7 +96,7 @@ type Payment struct {
 }
 
 type Void struct {
-	ID           int64     `json:"-"`
+	ID           int64     `json:"voidId,omitempty"`
 	Method       string    `json:"method,omitempty" validate:"required,max=50,min=3"`
 	Reference    string    `json:"reference,omitempty" validate:"required,max=50,min=3"`
 	SequenceID   int64     `json:"sequenceId,omitempty" validate:"omitempty,numeric,max=9999999999,min=1"`

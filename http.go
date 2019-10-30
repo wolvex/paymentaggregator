@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	ex "github.com/wolvex/go/error"
 	log "github.com/Sirupsen/logrus"
+	ex "github.com/wolvex/go/error"
 )
 
 type Client interface {

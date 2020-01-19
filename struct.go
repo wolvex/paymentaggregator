@@ -57,6 +57,7 @@ type Order struct {
 	//Timestamp     string       `json:"timestamp,omitempty" validate:"omitempty,max=50,min=10"`
 	TotalPrice *Amount      `json:"totalPrice,omitempty"`
 	Goods      []*GoodsItem `json:"goods,omitempty"`
+	CreatedAt  string       `json:"createdAt,omitempty"`
 	Status     int          `json:"-"`
 	Remark     string       `json:"-"`
 }
@@ -122,6 +123,12 @@ type Result struct {
 	Remark string `json:"remark,omitempty"`
 }
 
+type History struct {
+	Order   *Order   `json:"order,omitempty"`
+	Payment *Payment `json:"payment,omitempty"`
+	Result  *Result  `json:"result,omitempty"`
+}
+
 type RequestMessage struct {
 	Store    *Store   `json:"store,omitempty"`
 	Order    *Order   `json:"order,omitempty"`
@@ -132,12 +139,13 @@ type RequestMessage struct {
 }
 
 type ResponseMessage struct {
-	Store    *Store   `json:"store,omitempty"`
-	Order    *Order   `json:"order,omitempty"`
-	Payment  *Payment `json:"payment,omitempty"`
-	Void     *Void    `json:"void,omitempty"`
-	Result   *Result  `json:"result,omitempty"`
-	Messages []string `json:"messages,omitempty"`
+	Store    *Store     `json:"store,omitempty"`
+	Order    *Order     `json:"order,omitempty"`
+	Payment  *Payment   `json:"payment,omitempty"`
+	Void     *Void      `json:"void,omitempty"`
+	History  []*History `json:"history,omitempty"`
+	Result   *Result    `json:"result,omitempty"`
+	Messages []string   `json:"messages,omitempty"`
 }
 
 type Message struct {

@@ -65,6 +65,7 @@ type Order struct {
 type Partner struct {
 	ID            int64  `json:"-"`
 	Code          string `json:"code,omitempty" validate:"required,max=50,min=3"`
+	Name          string `json:"name,omitempty" validate:"max=50,min=3"`
 	IssuerCode    string `json:"issuerCode,omitempty" validate:"required,max=50,min=3"`
 	Hotline       string `json:"hotline,omitempty" validate:"omitempty,max=50,min=3"`
 	InvoiceTmpl   int    `json:"-"`
@@ -72,6 +73,7 @@ type Partner struct {
 	PublicKey     string `json:"-"`
 	AsyncPayment  int    `json:"-"`
 	OrderLifetime int    `json:"-"`
+	VoidEnabled   int    `json:"-"`
 }
 
 type Account struct {

@@ -39,6 +39,7 @@ const (
 	ERR_DATABASE             int = 91
 	ERR_SYSTEM_ERROR         int = 92
 	ERR_OTHERS               int = 93
+	ERR_VOID_CANCELLED       int = 94
 	ERR_PROCESSING           int = 98
 	ERR_IN_QUEUE             int = 99
 )

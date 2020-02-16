@@ -140,6 +140,7 @@ func (c *HttpClient) Submit(method string, header map[string]string, body []byte
 		log.WithFields(log.Fields{
 			"request": string(dump),
 			"url":     c.Url,
+			"msg_id":  header["X-Msg-ID"],
 		}).Info("Sending HTTP request")
 		//fmt.Printf("HTTP Request: \n %q \n", dump)
 	}
@@ -157,6 +158,7 @@ func (c *HttpClient) Submit(method string, header map[string]string, body []byte
 	} else {
 		log.WithFields(log.Fields{
 			"response": string(dump),
+			"msg_id":   header["X-Msg-ID"],
 		}).Info("Receiving HTTP response")
 		//fmt.Printf("HTTP Response: \n %q \n", dump)
 	}

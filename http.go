@@ -149,6 +149,10 @@ func (c *HttpClient) Submit(method string, header map[string]string, body []byte
 	res, err = c.Session.Do(req)
 	if err != nil {
 		log.WithField("error", err).Error("Exception caught while sending HTTP package")
+
+		req.Close = true
+		c.Session.CloseIdleConnections()
+
 		return
 	}
 	defer res.Body.Close()

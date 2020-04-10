@@ -63,17 +63,19 @@ type Order struct {
 }
 
 type Partner struct {
-	ID            int64  `json:"-"`
-	Code          string `json:"code,omitempty" validate:"required,max=50,min=3"`
-	Name          string `json:"name,omitempty" validate:"max=50,min=3"`
-	IssuerCode    string `json:"issuerCode,omitempty" validate:"required,max=50,min=3"`
-	Hotline       string `json:"hotline,omitempty" validate:"omitempty,max=50,min=3"`
-	InvoiceTmpl   int    `json:"-"`
-	Url           string `json:"-"`
-	PublicKey     string `json:"-"`
-	AsyncPayment  int    `json:"-"`
-	OrderLifetime int    `json:"-"`
-	VoidEnabled   int    `json:"-"`
+	ID            int64   `json:"-"`
+	Code          string  `json:"code,omitempty" validate:"required,max=50,min=3"`
+	Name          string  `json:"name,omitempty" validate:"max=50,min=3"`
+	IssuerCode    string  `json:"issuerCode,omitempty" validate:"required,max=50,min=3"`
+	Hotline       string  `json:"hotline,omitempty" validate:"omitempty,max=50,min=3"`
+	InvoiceTmpl   int     `json:"-"`
+	Url           string  `json:"-"`
+	PublicKey     string  `json:"-"`
+	AsyncPayment  int     `json:"-"`
+	OrderLifetime int     `json:"-"`
+	VoidEnabled   int     `json:"-"`
+	PriceStart    float64 `json:"-"`
+	PriceEnd      float64 `json:"-"`
 }
 
 type Account struct {
@@ -141,13 +143,14 @@ type RequestMessage struct {
 }
 
 type ResponseMessage struct {
-	Store    *Store     `json:"store,omitempty"`
-	Order    *Order     `json:"order,omitempty"`
-	Payment  *Payment   `json:"payment,omitempty"`
-	Void     *Void      `json:"void,omitempty"`
-	History  []*History `json:"history,omitempty"`
-	Result   *Result    `json:"result,omitempty"`
-	Messages []string   `json:"messages,omitempty"`
+	Store       *Store     `json:"store,omitempty"`
+	Order       *Order     `json:"order,omitempty"`
+	Payment     *Payment   `json:"payment,omitempty"`
+	Void        *Void      `json:"void,omitempty"`
+	History     []*History `json:"history,omitempty"`
+	Result      *Result    `json:"result,omitempty"`
+	Messages    []string   `json:"messages,omitempty"`
+	MIMEContent string     `json:"mimeContent,omitempty"`
 }
 
 type Message struct {

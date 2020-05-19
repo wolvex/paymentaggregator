@@ -87,7 +87,7 @@ func (c *HttpClient) Post(body *Message) (response *Message, err *ex.AppError) {
 
 	if res, e := c.Submit("POST", header, req); e != nil {
 		if isTimeout(e) || isEOF(e) {
-			err = ex.Errorc(ERR_TIMEOUT).Rem("Timeout detected")
+			err = ex.Error(e, ERR_TIMEOUT).Rem("Timeout/EOF detected")
 		} else {
 			err = ex.Error(e, ERR_OTHERS).Rem("Unable to send POST to %s", c.Url)
 		}

@@ -21,6 +21,7 @@ type Store struct {
 	TerminalID string `json:"terminalId,omitempty" validate:"omitempty,max=50,min=3"`
 	PublicKey  string `json:"-"`
 	NotifUrl   string `json:"-"`
+	InvoicePfx string `json:"-"`
 	SuccessUrl string `json:"successUrl,omitempty" validate:"omitempty,max=50,min=3"`
 	FailedUrl  string `json:"failedUrl,omitempty" validate:"omitempty,max=50,min=3"`
 }

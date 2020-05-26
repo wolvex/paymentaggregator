@@ -37,7 +37,19 @@ type HttpClient struct {
 }
 
 func NewClient(url, originHost string, signer *Signer, unsigners map[string]*Unsigner, timeout int64) *HttpClient {
-	transport := &http.Transport{}
+	transport := &http.Transport{
+		DialContext: (&net.Dialer{
+			Timeout:   time.Duration(timeout) * time.Millisecond,
+			KeepAlive: 30 * time.Second,
+			DualStack: true,
+		}).DialContext,
+		ForceAttemptHTTP2:     true,
+		MaxIdleConns:          100,
+		IdleConnTimeout:       30 * time.Second,
+		TLSHandshakeTimeout:   10 * time.Second,
+		ExpectContinueTimeout: 1 * time.Second,
+	}
+
 	if strings.HasPrefix(url, "https") {
 		transport.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	}
@@ -193,6 +205,14 @@ func isTimeout(err error) bool {
 
 func isEOF(err error) bool {
 	return strings.Contains(err.Error(), "EOF")
+}
+
+func HttpStatus(e int) int {
+	if status, ok := HTTP_STATUS_MAP[e]; ok {
+		return status
+	} else {
+		return http.StatusInternalServerError
+	}
 }
 
 /**

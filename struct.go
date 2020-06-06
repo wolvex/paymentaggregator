@@ -12,18 +12,19 @@ type Amount struct {
 }
 
 type Store struct {
-	ID         int64  `json:"-"`
-	Code       string `json:"code,omitempty" validate:"required,max=50,min=3"`
-	Name       string `json:"name,omitempty" validate:"omitempty,max=50,min=3"`
-	Address    string `json:"address,omitempty" validate:"omitempty,max=50,min=3"`
-	MerchantID string `json:"merchantId,omitempty" validate:"omitempty,max=50,min=3"`
-	MallID     string `json:"mallId,omitempty" validate:"omitempty,max=50,min=3"`
-	TerminalID string `json:"terminalId,omitempty" validate:"omitempty,max=50,min=3"`
-	PublicKey  string `json:"-"`
-	NotifUrl   string `json:"-"`
-	InvoicePfx string `json:"-"`
-	SuccessUrl string `json:"successUrl,omitempty" validate:"omitempty,max=50,min=3"`
-	FailedUrl  string `json:"failedUrl,omitempty" validate:"omitempty,max=50,min=3"`
+	ID            int64  `json:"-"`
+	Code          string `json:"code,omitempty" validate:"required,max=50,min=3"`
+	Name          string `json:"name,omitempty" validate:"omitempty,max=50,min=3"`
+	Address       string `json:"address,omitempty" validate:"omitempty,max=50,min=3"`
+	MerchantID    string `json:"merchantId,omitempty" validate:"omitempty,max=50,min=3"`
+	MallID        string `json:"mallId,omitempty" validate:"omitempty,max=50,min=3"`
+	TerminalID    string `json:"terminalId,omitempty" validate:"omitempty,max=50,min=3"`
+	PublicKey     string `json:"-"`
+	NotifUrl      string `json:"-"`
+	InvoicePfx    string `json:"-"`
+	SuccessUrl    string `json:"successUrl,omitempty" validate:"omitempty,max=50,min=3"`
+	FailedUrl     string `json:"failedUrl,omitempty" validate:"omitempty,max=50,min=3"`
+	ConfirmAction string `json:"confirmAction,omitempty" validate:"omitempty,max=50,min=3"`
 }
 
 type GoodsItem struct {
@@ -73,10 +74,11 @@ type Partner struct {
 	Url           string  `json:"-"`
 	PublicKey     string  `json:"-"`
 	AsyncPayment  int     `json:"-"`
-	OrderLifetime int     `json:"-"`
 	VoidEnabled   int     `json:"-"`
 	PriceStart    float64 `json:"-"`
 	PriceEnd      float64 `json:"-"`
+	OrderLifetime int     `json:"-"`
+	MultiRequest  int     `json:"-"`
 }
 
 type Account struct {
@@ -98,8 +100,9 @@ type Payment struct {
 	Reward       []*Amount `json:"reward,omitempty"`
 	Balance      []*Amount `json:"balance,omitempty"`
 	ApprovalCode string    `json:"approvalCode,omitempty" validate:"omitempty,max=50,min=3"`
-	Token        string    `json:"token,omitempty" validate:"omitempty,max=50,min=3"`
-	RedirectUrl  string    `json:"redirectUrl,omitempty" validate:"omitempty,max=50,min=3"`
+	Token        string    `json:"token,omitempty" validate:"omitempty,max=255,min=3"`
+	RedirectUrl  string    `json:"redirectUrl,omitempty" validate:"omitempty,max=255,min=3"`
+	QRCode       string    `json:"qrCode,omitempty" validate:"omitempty,max=255,min=3"`
 	ExpiryTime   string    `json:"expiryTime,omitempty" validate:"omitempty,max=50,min=3"`
 	Status       int       `json:"-"`
 	Remark       string    `json:"-"`

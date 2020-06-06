@@ -37,18 +37,22 @@ type HttpClient struct {
 }
 
 func NewClient(url, originHost string, signer *Signer, unsigners map[string]*Unsigner, timeout int64) *HttpClient {
+	/**
 	transport := &http.Transport{
 		DialContext: (&net.Dialer{
-			Timeout:   time.Duration(timeout) * time.Millisecond,
-			KeepAlive: 30 * time.Second,
+			Timeout:   20 * time.Millisecond,
+			KeepAlive: 20 * time.Second,
 			DualStack: true,
 		}).DialContext,
 		ForceAttemptHTTP2:     true,
 		MaxIdleConns:          100,
-		IdleConnTimeout:       30 * time.Second,
-		TLSHandshakeTimeout:   10 * time.Second,
-		ExpectContinueTimeout: 1 * time.Second,
-	}
+		MaxIdleConnsPerHost:   100,
+		IdleConnTimeout:       20 * time.Second,
+		TLSHandshakeTimeout:   20 * time.Second,
+		ExpectContinueTimeout: 5 * time.Second,
+	}*/
+
+	transport := &http.Transport{}
 
 	if strings.HasPrefix(url, "https") {
 		transport.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
@@ -147,7 +151,7 @@ func (c *HttpClient) Submit(method string, header map[string]string, body []byte
 	}
 
 	if dump, e := httputil.DumpRequestOut(req, true); e != nil {
-		log.Error(e)
+		log.WithField("error", e).Error("Exception caught while dumping request")
 	} else {
 		log.WithFields(log.Fields{
 			"request": string(dump),
@@ -170,7 +174,7 @@ func (c *HttpClient) Submit(method string, header map[string]string, body []byte
 	defer res.Body.Close()
 
 	if dump, e := httputil.DumpResponse(res, true); e != nil {
-		log.Error(e)
+		log.WithField("error", e).Error("Exception caught while dumping response")
 	} else {
 		log.WithFields(log.Fields{
 			"response": string(dump),
@@ -189,6 +193,7 @@ func (c *HttpClient) Submit(method string, header map[string]string, body []byte
 	response.Length = res.ContentLength
 	response.Raw, err = ioutil.ReadAll(res.Body)
 	if err != nil {
+		log.WithField("error", err).Error("Exception caught while reading response body")
 		return
 	}
 

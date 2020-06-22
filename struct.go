@@ -70,6 +70,7 @@ type Partner struct {
 	Name          string  `json:"name,omitempty" validate:"max=50,min=3"`
 	IssuerCode    string  `json:"issuerCode,omitempty" validate:"required,max=50,min=3"`
 	Hotline       string  `json:"hotline,omitempty" validate:"omitempty,max=50,min=3"`
+	Metadata      string  `json:"metadata,omitempty" validate:"omitempty,max=2048,min=3"`
 	InvoiceTmpl   int     `json:"-"`
 	Url           string  `json:"-"`
 	PublicKey     string  `json:"-"`
@@ -82,8 +83,8 @@ type Partner struct {
 }
 
 type Account struct {
-	ID            string `json:"id,omitempty" validate:"required,max=50,min=3"`
-	WalletID      string `json:"walletId,omitempty" validate:"omitempty,max=50,min=3"`
+	ID            string `json:"id,omitempty" validate:"required,max=20,min=3"`
+	WalletID      string `json:"walletId,omitempty" validate:"omitempty,max=20,min=3"`
 	Name          string `json:"name,omitempty" validate:"omitempty,max=50,min=3"`
 	Authorization string `json:"authorization,omitempty" validate:"omitempty,max=50,min=3"`
 }

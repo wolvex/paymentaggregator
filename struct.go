@@ -87,6 +87,7 @@ type Account struct {
 	WalletID      string `json:"walletId,omitempty" validate:"omitempty,max=20,min=3"`
 	Name          string `json:"name,omitempty" validate:"omitempty,max=50,min=3"`
 	Authorization string `json:"authorization,omitempty" validate:"omitempty,max=50,min=3"`
+	Email         string `json:"email,omitempty" validate:"omitempty,max=50,min=3"`
 }
 
 type Payment struct {

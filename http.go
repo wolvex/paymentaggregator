@@ -24,7 +24,7 @@ type HttpResponse struct {
 	Status int
 	Header map[string]string
 	Body   string
-	Length int64
+	Length int
 	Raw    []byte
 }
 
@@ -190,12 +190,13 @@ func (c *HttpClient) Submit(method string, header map[string]string, body []byte
 	for name, value := range res.Header {
 		response.Header[name] = value[0]
 	}
-	response.Length = res.ContentLength
+	//response.Length = res.ContentLength
 	response.Raw, err = ioutil.ReadAll(res.Body)
 	if err != nil {
 		log.WithField("error", err).Error("Exception caught while reading response body")
 		return
 	}
+	response.Length = len(response.Raw)
 
 	return
 }

@@ -140,12 +140,13 @@ type History struct {
 }
 
 type RequestMessage struct {
-	Store    *Store   `json:"store,omitempty"`
-	Order    *Order   `json:"order,omitempty"`
-	Payment  *Payment `json:"payment,omitempty"`
-	Void     *Void    `json:"void,omitempty"`
-	Result   *Result  `json:"result,omitempty"`
-	Messages []string `json:"messages,omitempty"`
+	Store       *Store   `json:"store,omitempty"`
+	Order       *Order   `json:"order,omitempty"`
+	Payment     *Payment `json:"payment,omitempty"`
+	Void        *Void    `json:"void,omitempty"`
+	Result      *Result  `json:"result,omitempty"`
+	Messages    []string `json:"messages,omitempty"`
+	MIMEContent string   `json:"mimeContent,omitempty"`
 }
 
 type ResponseMessage struct {

@@ -65,21 +65,22 @@ type Order struct {
 }
 
 type Partner struct {
-	ID            int64   `json:"-"`
-	Code          string  `json:"code,omitempty" validate:"required,max=50,min=3"`
-	Name          string  `json:"name,omitempty" validate:"max=50,min=3"`
-	IssuerCode    string  `json:"issuerCode,omitempty" validate:"required,max=50,min=3"`
-	Hotline       string  `json:"hotline,omitempty" validate:"omitempty,max=50,min=3"`
-	Metadata      string  `json:"metadata,omitempty" validate:"omitempty,max=2048,min=3"`
-	InvoiceTmpl   int     `json:"-"`
-	Url           string  `json:"-"`
-	PublicKey     string  `json:"-"`
-	AsyncPayment  int     `json:"-"`
-	VoidEnabled   int     `json:"-"`
-	PriceStart    float64 `json:"-"`
-	PriceEnd      float64 `json:"-"`
-	OrderLifetime int     `json:"-"`
-	MultiRequest  int     `json:"-"`
+	ID              int64   `json:"-"`
+	Code            string  `json:"code,omitempty" validate:"required,max=50,min=3"`
+	Name            string  `json:"name,omitempty" validate:"max=50,min=3"`
+	IssuerCode      string  `json:"issuerCode,omitempty" validate:"required,max=50,min=3"`
+	InstitutionCode string  `json:"institutionCode,omitempty" validate:"required,max=50,min=3"`
+	Hotline         string  `json:"hotline,omitempty" validate:"omitempty,max=50,min=3"`
+	Metadata        string  `json:"metadata,omitempty" validate:"omitempty,max=2048,min=3"`
+	InvoiceTmpl     int     `json:"-"`
+	Url             string  `json:"-"`
+	PublicKey       string  `json:"-"`
+	AsyncPayment    int     `json:"-"`
+	VoidEnabled     int     `json:"-"`
+	PriceStart      float64 `json:"-"`
+	PriceEnd        float64 `json:"-"`
+	OrderLifetime   int     `json:"-"`
+	MultiRequest    int     `json:"-"`
 }
 
 type Account struct {

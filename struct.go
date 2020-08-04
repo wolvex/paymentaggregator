@@ -69,7 +69,7 @@ type Partner struct {
 	Code            string  `json:"code,omitempty" validate:"required,max=50,min=3"`
 	Name            string  `json:"name,omitempty" validate:"max=50,min=3"`
 	IssuerCode      string  `json:"issuerCode,omitempty" validate:"required,max=50,min=3"`
-	InstitutionCode string  `json:"institutionCode,omitempty" validate:"max=50,min=3"`
+	InstitutionCode string  `json:"institutionCode,omitempty" validate:"omitempty,max=50,min=3"`
 	Hotline         string  `json:"hotline,omitempty" validate:"omitempty,max=50,min=3"`
 	Metadata        string  `json:"metadata,omitempty" validate:"omitempty,max=2048,min=3"`
 	InvoiceTmpl     int     `json:"-"`

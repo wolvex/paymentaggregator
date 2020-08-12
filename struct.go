@@ -140,14 +140,27 @@ type History struct {
 	Result  *Result  `json:"result,omitempty"`
 }
 
+type Recurring struct {
+	BillNumber   string `json:"billNumber,omitempty"`
+	BillDetail   string `json:"billDetail,omitempty"`
+	BillType     string `json:"billType,omitempty"`
+	StartDate    string `json:"startDate,omitempty"`
+	EndDate      string `json:"endDate,omitempty"`
+	ExecuteType  string `json:"executeType,omitempty"`
+	ExecuteDate  string `json:"executeDate,omitempty"`
+	ExecuteMonth string `json:"executeMonth,omitempty"`
+	FlatStatus   string `json:"flatStatus,omitempty"`
+}
+
 type RequestMessage struct {
-	Store       *Store   `json:"store,omitempty"`
-	Order       *Order   `json:"order,omitempty"`
-	Payment     *Payment `json:"payment,omitempty"`
-	Void        *Void    `json:"void,omitempty"`
-	Result      *Result  `json:"result,omitempty"`
-	Messages    []string `json:"messages,omitempty"`
-	MIMEContent string   `json:"mimeContent,omitempty"`
+	Store       *Store     `json:"store,omitempty"`
+	Order       *Order     `json:"order,omitempty"`
+	Payment     *Payment   `json:"payment,omitempty"`
+	Void        *Void      `json:"void,omitempty"`
+	Result      *Result    `json:"result,omitempty"`
+	Messages    []string   `json:"messages,omitempty"`
+	MIMEContent string     `json:"mimeContent,omitempty"`
+	Recurring   *Recurring `json:"recurring,omitempty"`
 }
 
 type ResponseMessage struct {

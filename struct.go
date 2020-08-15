@@ -39,6 +39,7 @@ type GoodsItem struct {
 	CheckAvail  int       `json:"-"`
 	StockAvail  int       `json:"stockAvail,omitempty"`
 	ExtendData  string    `json:"extendData,omitempty"`
+	PackID      string    `json:"packId,omitempty"`
 }
 
 type Merchant struct {

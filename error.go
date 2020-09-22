@@ -25,6 +25,7 @@ const (
 	ERR_PAYMENT_FAILED       int = 20
 	ERR_PAYMENT_DUPLICATE    int = 21
 	ERR_PAYMENT_IN_PROGRESS  int = 22
+	ERR_PAYMENT_EXPIRED      int = 23
 	ERR_TRX_EXPIRED          int = 30
 	ERR_TRX_INVALID          int = 31
 	ERR_TRX_UNAUTHORIZED     int = 32

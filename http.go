@@ -37,26 +37,26 @@ type HttpClient struct {
 }
 
 func NewClient(url, originHost string, signer *Signer, unsigners map[string]*Unsigner, timeout int64) *HttpClient {
-	/**
 	transport := &http.Transport{
 		DialContext: (&net.Dialer{
-			Timeout:   20 * time.Millisecond,
-			KeepAlive: 20 * time.Second,
-			DualStack: true,
+			Timeout: 5 * time.Millisecond,
+			//KeepAlive: 10 * time.Second,
+			//DualStack: true,
 		}).DialContext,
-		ForceAttemptHTTP2:     true,
-		MaxIdleConns:          100,
-		MaxIdleConnsPerHost:   100,
-		IdleConnTimeout:       20 * time.Second,
-		TLSHandshakeTimeout:   20 * time.Second,
-		ExpectContinueTimeout: 5 * time.Second,
-	}*/
-
-	transport := &http.Transport{}
-
-	if strings.HasPrefix(url, "https") {
-		transport.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
+		//ForceAttemptHTTP2:     true,
+		MaxIdleConns: 10,
+		//MaxIdleConnsPerHost:   10,
+		IdleConnTimeout:     10 * time.Second,
+		TLSHandshakeTimeout: 5 * time.Second,
+		//ExpectContinueTimeout: 5 * time.Second,
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
+
+	//transport := &http.Transport{}
+
+	//if strings.HasPrefix(url, "https") {
+	//	transport.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
+	//}
 	/**
 	proxyURL, err := url.Parse("http://localhost:8888")
 	transport := &http.Transport{

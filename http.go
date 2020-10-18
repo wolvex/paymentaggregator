@@ -39,7 +39,7 @@ type HttpClient struct {
 func NewClient(url, originHost string, signer *Signer, unsigners map[string]*Unsigner, timeout int64) *HttpClient {
 	transport := &http.Transport{
 		DialContext: (&net.Dialer{
-			Timeout: 5 * time.Millisecond,
+			Timeout: 5 * time.Second,
 			//KeepAlive: 10 * time.Second,
 			//DualStack: true,
 		}).DialContext,
